@@ -2,7 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const productRoutes = require('./routes/product.routes');
+const authRoutes = require('./routes/auth.routes');
+const userRoutes = require('./routes/user.routes')
 const errorMiddleware = require('./middlewares/error.middleware');
+
 
 
 
@@ -17,7 +20,9 @@ app.get('/', (req,res)=>{
     console.log('Test route accessed');
 })
 
-// product routes
+// routes
+app.use('/api/auth', authRoutes);
+app.use('api/user', userRoutes);
 app.use('/api/products', productRoutes);
 
 module.exports = app;
